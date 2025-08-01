@@ -5,6 +5,11 @@ permissions:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
 on:
   push:
     branches: ["main"]
@@ -39,8 +44,6 @@ jobs:
           # Records to Cypress Cloud
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
+          group: "UI-Chrome"
           parallel: true # Runs test in parallel using settings above
-        env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in GitHub repo → Settings → Secrets → Actions
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
