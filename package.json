@@ -2,7 +2,8 @@
   "name": "e2e",
   "version": "1.0.0",
   "scripts": {
-    "open": "cypress open"
+    "cy-open": "cypress open",
+    "cy-run": "cypress run"
   },
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
